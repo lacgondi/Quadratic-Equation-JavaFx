@@ -6,42 +6,46 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class HelloController {
-    public TextField first;
-    public TextField second;
-    public TextField third;
-    public Button calcButton;
-    public Label xlabelone;
-    public Label xlabeltwo;
+public class QuadController {
     @FXML
-    private Label welcomeText;
+    public TextField first;
+    @FXML
+    public TextField second;
+    @FXML
+    public TextField third;
+    @FXML
+    public Button calcButton;
+    @FXML
+    public Label xlabelone;
+    @FXML
+    public Label xlabeltwo;
 
     @FXML
     public void calcButtonClick(ActionEvent actionEvent) {
-        double firstnumber = 0;
-        double secondnumber = 0;
-        double thirdnumber = 0;
+        double firstNumber = 0;
+        double secondNumber = 0;
+        double thirdNumber = 0;
 
         try{
-            firstnumber = Double.parseDouble(first.getText());
-            secondnumber = Double.parseDouble(second.getText());
-            thirdnumber = Double.parseDouble(third.getText());
+            firstNumber = Double.parseDouble(first.getText());
+            secondNumber = Double.parseDouble(second.getText());
+            thirdNumber = Double.parseDouble(third.getText());
         }catch(NumberFormatException e){
             System.out.println("Kérem csak számokat adjon meg.");
         }
-        System.out.println(firstnumber);
-        System.out.println(secondnumber);
-        System.out.println(thirdnumber);
-        quadraticEquation(firstnumber, secondnumber, thirdnumber);
+        System.out.println(firstNumber);
+        System.out.println(secondNumber);
+        System.out.println(thirdNumber);
+        quadraticEquation(firstNumber, secondNumber, thirdNumber);
     }
 
     @FXML
-    public void quadraticEquation(double fx, double sx, double tx){ //first x, second x, third x
+    public void quadraticEquation(double a, double b, double c){ //first x, second x, third x
         //(-b +- sqrt(b^2 - 4 * a * c)) / 2a
 
-        double inSqrt = Math.pow(sx, 2) - (4 * fx * tx);
-        double x1sum = -sx + Math.sqrt(inSqrt) / (2 * fx);
-        double x2sum = -sx - Math.sqrt(inSqrt) / (2 * fx);
+        double inSqrt = Math.pow(b, 2) - (4 * a * c);
+        double x1sum = -b + Math.sqrt(inSqrt) / (2 * a);
+        double x2sum = -b - Math.sqrt(inSqrt) / (2 * a);
 
         if(inSqrt < 0){
             System.out.println("Ez az egyenlet nem oldható meg a valós számok halmazán.");
