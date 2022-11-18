@@ -2,6 +2,7 @@ package com.example.quadraticequation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,7 +32,7 @@ public class QuadController {
             secondNumber = Double.parseDouble(second.getText());
             thirdNumber = Double.parseDouble(third.getText());
         }catch(NumberFormatException e){
-            System.out.println("Kérem csak számokat adjon meg.");
+            showAlert("The number fields aren't filled","Fill the number fields to continue");
         }
         System.out.println(firstNumber);
         System.out.println(secondNumber);
@@ -48,7 +49,7 @@ public class QuadController {
         double x2sum = -b - Math.sqrt(inSqrt) / (2 * a);
 
         if(inSqrt < 0){
-            System.out.println("Ez az egyenlet nem oldható meg a valós számok halmazán.");
+            showAlert("Calculation failed", "The given numbers can't be square-rooted, so there is no solution for this equation");
         }
         else if(x1sum < 0){
             xlabelone.setVisible(false);
@@ -62,6 +63,12 @@ public class QuadController {
             xlabeltwo.setText("x2 = " + x2sum);
             xlabelone.setText("x1 = " + x1sum);
         }
+    }
 
+    private void showAlert(String headerText, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contextText);
+        alert.show();
     }
 }
